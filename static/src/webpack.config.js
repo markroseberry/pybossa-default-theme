@@ -18,7 +18,7 @@ module.exports = {
   output: {
     path: resolve('../js/gen'),
     publicPath: '/static/js/gen',
-    filename: '[name].min.js'
+    filename: 'editor.min.[hash].js'
   },
 
   resolve: {
@@ -64,13 +64,13 @@ module.exports = {
     plugins: [
         new htmlWebpackPlugin({
           inject: false,
-          hash: true,
+          hash: false,
           filename: '../../../templates/projects/new_blogpost.html',
           template: '../../templates/projects/new_blogpost.webpack'
         }),
         new htmlWebpackPlugin({
           inject: false,
-          hash: true,
+          hash: false,
           filename: '../../../templates/admin/new_announcement.html',
           template: '../../templates/admin/new_announcement.webpack'
         }),
@@ -79,6 +79,12 @@ module.exports = {
           hash: true,
           filename: '../../../templates/projects/tasks_browse.html',
           template: '../../templates/projects/tasks_browse.webpack.html'
+        }),
+        new htmlWebpackPlugin({
+          inject: false,
+          hash: false,
+          filename: '../../../templates/projects/componentBuilder.html',
+          template: '../../templates/projects/componentBuilder.webpack'
         }),
         new VueLoaderPlugin()
     ]
