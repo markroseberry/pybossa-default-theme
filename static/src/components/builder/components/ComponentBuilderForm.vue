@@ -1,8 +1,6 @@
 <template>
     <div class = "row"> 
   <!-- use the modal component, pass in the prop -->
-  
-
     <div class="panel panel-default">
          
         <div class="panel-heading">
@@ -47,39 +45,41 @@
                                             type="text" 
                                             v-model= "form['label'].stringValue" />
                                         <!-- Checkbox for select if label is a variable -->
-                                        <input v-if = "addLabel === true" type="checkbox" id="label" v-model="form['for'].isVariable">
-                                        <label v-if = "addLabel === true" for="label"> Is Variable Name?</label>
+                                        <!-- <input v-if = "addLabel === true" type="checkbox" id="label" v-model="form['for'].isVariable">
+                                        <label v-if = "addLabel === true" for="label"> Is Variable Name?</label> -->
                                     </div>
                                 </div>
                                 <!-- Generates inputs dinamically depending on the list of props of the selected component-->
                                 <div  class="form-row">
                                     <div class="form-group col-md-12" v-for = "prop in selectedComponent.props"  v-bind:key = "prop" >
-                                        <label class= "col-form-label-sm" :for = "prop" >{{propsList[prop].name}}</label>
-                                    
-                                        <!-- Display a dropdown if value  is boolean -->
-                                        {{form[prop].booleanValue}}
-                                        <select v-if="propsList[prop].formInputType === 'Boolean' 
-                                                            && propsList[prop].formInputType === selectedComponent.type
-                                                            && (form[prop].isVariable === false || form[prop].isVariable === undefined)"   
-                                                    :id ="prop" 
-                                                    class="form-control form-control-sm" 
-                                                    v-model= "form[prop].booleanValue" >
-                                                <option v-for="e in booleanValues"  v-bind:key = "e" v-bind:value="e">
-                                                    {{ e }}
-                                                </option>
-                                        </select>
+                                        <div v-if="propsList[prop].name !== 'id' ">
+                                            <label class= "col-form-label-sm" :for = "prop" >{{propsList[prop].name}}</label>
+                                        
+                                            <!-- Display a dropdown if value  is boolean -->
+                                            <select v-if="propsList[prop].formInputType === 'Boolean' 
+                                                                && propsList[prop].formInputType === selectedComponent.type
+                                                                && (form[prop].isVariable === false || form[prop].isVariable === undefined)"   
+                                                        :id ="prop" 
+                                                        class="form-control form-control-sm" 
+                                                        v-model= "form[prop].booleanValue" >
+                                                    <option v-for="e in booleanValues"  v-bind:key = "e" v-bind:value="e">
+                                                        {{ e }}
+                                                    </option>
+                                            </select>
 
-                                        <!-- Display an input text if value is String 
-                                        Use isVariable to determine if values is expression or variable-->
-                                        <input  v-else-if = "form[prop].isVariable === true
-                                                || propsList[prop].formInputType === 'String' "
-                                            :id="prop" 
-                                            class="form-control form-control-sm"  
-                                            type="text" 
-                                            v-model= "form[prop].stringValue" />
-                                        <input type="checkbox" :id="prop+'-isVariable'" v-model="form[prop].isVariable">
-                                        <label :for="prop+'-isVariable'"> Is Variable Name?</label>
-                                    </div>
+                                            <!-- Display an input text if value is String 
+                                            Use isVariable to determine if values is expression or variable-->
+                                            <input  v-else-if = "(form[prop].isVariable === true
+                                                    || propsList[prop].formInputType === 'String')"
+                                                :id="prop" 
+                                                class="form-control form-control-sm"  
+                                                type="text" 
+                                                v-model= "form[prop].stringValue" />
+                                            <input v-if= "!propsList[prop].name.includes('answer')" type="checkbox" :id="prop+'-isVariable'" v-model="form[prop].isVariable">
+                                            <label v-if= "!propsList[prop].name.includes('answer')" :for="prop+'-isVariable'"> Is Variable Name?</label>
+                                        </div>
+                                   </div>
+
                                 </div>
                             </form>
                         </div>

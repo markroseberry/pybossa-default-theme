@@ -72,6 +72,7 @@ export default {
         rawHtml : function() {
             // this variable will contain all tokens data to be replace on the template
             let formForTemplate ={};
+            this.form['id'].stringValue = this.uniqueID()
             Object.keys(this.form).forEach(e => { 
                 if(this.form[e].booleanValue != undefined){
                     formForTemplate[e] = this.form[e].booleanValue;
@@ -93,9 +94,14 @@ export default {
             Object.keys(this.form).forEach(e => { 
                 if(this.form[e].isVariable){
                     output = output.replace(e + '=',':'+ e + '=');
-                }
-            });
 
+                }
+
+
+            });
+                                // output = output.replace('initial-value' + '=',':'+ 'initial-value' + '=');
+
+            console.log(this.form['initial-value'])
             return output;
         },
 
@@ -103,18 +109,21 @@ export default {
             let showPreview = true;
             //if all props are filled then the component will be show
             //we can add better valdation to display on other cases
-            Object.keys(this.form).forEach(e => { 
-                if((this.form[e].booleanValue === undefined && this.form[e].stringValue === undefined 
-                        && e !== 'label' && e !== 'for')
-                    || (this.addLabel && !this.form[e].stringValue && e === 'label')){
-                    showPreview = false;
-                } 
-            });
+            // Object.keys(this.form).forEach(e => { 
+            //     if((this.form[e].booleanValue === undefined && this.form[e].stringValue === undefined 
+            //             && e !== 'label' && e !== 'for')
+            //         || (this.addLabel && !this.form[e].stringValue && e === 'label')){
+            //         showPreview = false;
+            //     } 
+            // });
             
             return showPreview;             
         }
     },
     methods: {
+        uniqueID () {
+            return '_' + Math.random().toString(36).substr(2, 9);
+        },
         copyTestingCode () {
           this.copiedMessage = true;
 
@@ -137,6 +146,10 @@ export default {
         ComponentRender
     }
     }
+
+String.prototype.insertAt=function(index, string) { 
+  return this.substr(0, index) + string + this.substr(index);
+}
 </script>
 
 
