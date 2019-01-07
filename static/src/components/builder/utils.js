@@ -1,59 +1,43 @@
-const selectedComponentProps =  function(template){
-    const paramsPattern = /[^{\}]+(?=})/g;
-    return [...new Set(template.match(paramsPattern))];
-};
-const textInputTemplate = require( "!!html-loader!./components/templates/TextInputTemplate.html");
+const textInputTemplate = require( "!!html-loader!./components/TextInput/TextInputTemplate.html");
 const checkboxInputTemplate = require( "!!html-loader!./components/templates/CheckboxTemplate.html");
-const RadioInputTemplate = require( "!!html-loader!./components/templates/RadioInputTemplate.html");
-const InstructionPanelTemplate = require( "!!html-loader!./components/templates/InstructionPanelTemplate.html");
+const dropdownInputTemplate = require( "!!html-loader!./components/templates/DropdownInputTemplate.html");
 
+const radioInputTemplate = require( "!!html-loader!./components/templates/RadioInputTemplate.html");
+const instructionPanelTemplate = require( "!!html-loader!./components/templates/InstructionPanelTemplate.html");
+const templates = {
+                    TEXT_INPUT: textInputTemplate,
+                    checkboxInputTemplate,
+                    dropdownInputTemplate,
+                    radioInputTemplate,
+                    instructionPanelTemplate,
+                };
+                
+const labelTemplate = require('!!html-loader!./components/templates/LabelTemplate.html');
 
+import Mustache from 'Mustache'
 export default {
-    getComponentsProps: function(){
-        return {
-            "id": { name:"id", valueType: "String", formInputType: 'String' },
-            "initial-value": { name:"initial-value", valueType: "Boolean", formInputType: 'Boolean' },
-            "choices": { name:"choices", valueType: "List", formInputType: 'String'  },
-            "label": { name:"label", valueType: "String", formInputType: 'String' },
-            "pyb-answer": { name:"pyb-answer", valueType: "String", formInputType: 'String' },
-        }
+    uniqueID: () => {
+        return '_' + Math.random().toString(36).substr(2, 9);
     },
-    getComponentsDetails: function(){
-        return [
-                {   id: 'text-input', 
-                    name: "Text Input", 
-                    template: textInputTemplate,
-                    type: 'String',
-                    props: selectedComponentProps(textInputTemplate)
-                },
-                {   id: 'checkbox-input', 
-                    name: "Checkbox", 
-                    template: checkboxInputTemplate ,
-                    type: "Boolean",
-                    props: selectedComponentProps(checkboxInputTemplate)
-                },
-                // {   id: 'radio-input', 
-                //     name: "Radio Input", 
-                //     template: RadioInputTemplate,
-                //     type: "Boolean",
-                //     props: selectedComponentProps(RadioInputTemplate)
-
-                // },
-                // {
-                //     id: 'instructions-panel',
-                //     name: 'Instruction Panel',
-                //     template: InstructionPanelTemplate,
-                //     type: 'String',
-                //     props: selectedComponentProps(InstructionPanelTemplate)
-
-                // }
-                // {   id: 'dropdown-input', 
-                //     name: "Dropdown Input", 
-                //     template: require( "!!html-loader!./components/templates/DropdownInputTemplate.html"),
-                //     type: "String"
-                // },
-            ]
+    getComponentCode: (form, component) =>{
+        let formForTemplate ={};
         
+        Object.keys(form).forEach(e => { 
+            formForTemplate[e] = form[e].value;
+        });
+
+        let output = Mustache.render(templates[component], formForTemplate);
+        if(form.label.value){
+            const label = {for: formForTemplate['id'], component: output, label: formForTemplate['label'] }
+            output = Mustache.render(labelTemplate, label); 
+        }
+
+        Object.keys(form).forEach(e => { 
+            if(form[e].isVariable){
+                output = output.replace(e + '=',':'+ e + '=');
+            }
+        });
+        return output;
     },
-    
+       
 }

@@ -37,9 +37,9 @@
     </div>
     <div class="col-md-10">
         <p id="component-builder-description">
-            Gigwork has a embeded library that use VueJs. This library can be use directly or,
-            user can use the UX component builder that creates the code for your components. 
-            <a id = "showVueComponent" class = "showVueComponent">Show Graphical Component Builder</a>
+            Click <a id = "showVueComponent" class = "showVueComponent">Graphical Component Builder</a>
+            to build your job with our interactive GUI.
+
         </p>
     </div>
 </div>
@@ -254,6 +254,59 @@ $(".btn-preview").off('click').on('click', function(){
         showPreview();
         });
 })();
+
+
+var main = function() {
+ var slide = $('.navigation-element');
+ var showVueComponent = $('#showVueComponent');
+ var hideVueComponent = $('#hideVueComponent');
+ var componentBuilderHideLink = document.getElementById("component-builder-hide");
+ var componentBuilderDescription = document.getElementById("component-builder-description");
+ var mainContainer =document.getElementById("main-container");
+ var containerContent = document.getElementById("container-content"); 
+ var vue = document.getElementById("editorpybossa");
+ var menu = document.getElementById("menu");
+ var mirror = document.getElementById("mirror");
+ componentBuilderHideLink.style.visibility = "hidden";
+ vue.style.visibility = "hidden";
+ vue.classList.toggle("col-md-0");
+
+ 
+ hideVueComponent.click(function() {
+    mainContainer.classList =[];
+    mainContainer.classList.toggle("container");
+    mirror.classList =[];
+    mirror.classList.toggle("col-md-12");
+    menu.classList =[];
+    menu.classList.toggle("col-md-3");
+    containerContent.classList =[];
+    containerContent.classList.toggle("col-md-9");
+    if(!containerContent.classList.contains("container-fluid")){
+        vue.style.visibility = "hidden";
+        componentBuilderHideLink.style.visibility = "hidden";
+        componentBuilderDescription.style.visibility = "visible";
+    }
+    slide.toggle('slow');            
+  });
+
+ showVueComponent.click(function() {
+    mainContainer.classList =[];
+    mainContainer.classList.toggle("container-fluid");
+    menu.classList =[];
+    menu.classList.toggle("col-md-0");
+    mirror.classList =[];
+    mirror.classList.toggle("col-md-6");
+    vue.classList =[];
+    vue.classList.toggle("col-md-6");
+    containerContent.classList =[];
+    containerContent.classList.toggle("col-md-12");
+    vue.style.visibility = "visible";
+    componentBuilderDescription.style.visibility = "hidden";
+    componentBuilderHideLink.style.visibility = "visible";
+    slide.toggle('slow');            
+ });
+}
+$(document).ready(main);
 </script>
 
 {% endblock %}
