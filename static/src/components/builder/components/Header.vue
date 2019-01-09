@@ -1,33 +1,48 @@
 <template>
-    <div class = "row"> 
-        <div class="col-md-1">
-            <router-link :to="{ name: 'home'}">
-                <i class="fa fa-angle-double-left" style="font-size:36px"></i>
-            </router-link> 
-            </div>
-            <div class="col-md-9">
-                <div  style="font-size:26px">Input Text</div>
-            </div>
-    </div>    
+  <div class = "row text-color">
+    <div
+      v-if="$route.name !== 'home'"
+      class="col-md-1 icon-back">
+      <i
+        class="fa fa-angle-double-left fa-w-14 fa-3x"
+        @click="navigateToHome"/>
+    </div>
+    <h3 class="col-md-11 pull-left">
+      {{ $route.params.header ? $route.params.header : 'Questions' }}
+    </h3>
+  </div>
 </template>
+
 <style>
- .disabled {
-    pointer-events:none; 
-    opacity:0.6;        
- }
+.text-color {
+    color:#3AB0D5;
+}
+.icon-back {
+    cursor: pointer;
+    color:#3AB0D5;
+    font-size: 20px;
+    padding-left: 20px;
+    padding-top: 5px;
+}
 </style>
+
 <script>
-import {mapActions} from 'vuex'
-import * as types from '../store/types';
+import * as types from '../store/types'
 
 export default {
     name: 'Header',
-    data(){
+    data () {
         return {
-        showModal: false}
+        }
     },
     methods: {
-        clearForm: function(){this.$store.dispatch(types['CLEAR_' + this.$route.params.componentName + '_FORM']);}
+        navigateToHome: function () {
+            this.$store.dispatch(types['CLEAR_' + this.$route.params.componentName + '_FORM'])
+            this.$router.push({ name: 'home' })
+        }
+    },
+    beforeRouteEnter (to, from, next) {
+        next()
     }
 }
 </script>

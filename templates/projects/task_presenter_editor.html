@@ -9,6 +9,9 @@
 <link rel="stylesheet" href="{{url_for('static', filename='vendor/codemirror/addons/display/fullscreen.css')}}"/>
 <link rel="stylesheet" href="{{url_for('static', filename='vendor/codemirror/addons/dialog/dialog.css')}}"/>
 <style>
+    .cursor-link {
+        cursor: pointer;
+    }
     iframe {
         height:400px;
         width: 100%;
@@ -37,7 +40,7 @@
     </div>
     <div class="col-md-10">
         <p id="component-builder-description">
-            Click <a id = "showVueComponent" class = "showVueComponent">Graphical Component Builder</a>
+            Click <a id = "showVueComponent" class = "showVueComponent cursor-link" >Graphical Component Builder</a>
             to build your job with our interactive GUI.
 
         </p>
@@ -69,7 +72,7 @@
                 </div>
                 
                     <p id = "component-builder-hide">
-                        <a class="pull-right text-right hide-text" id = "hideVueComponent">Hide Graphical Component Builder</a>
+                        <a class="pull-right text-right hide-text cursor-link" id = "hideVueComponent">Hide Graphical Component Builder</a>
                     </p>
                     {% include "projects/ComponentBuilder.html" %}
             
