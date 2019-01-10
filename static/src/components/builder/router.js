@@ -1,4 +1,4 @@
-import Questions from './components/questions.vue'
+import Questions from './components/Questions.vue'
 import Header from './components/Header.vue'
 import Content from './components/Content.vue'
 import CheckboxForm from './components/CheckboxInput/CheckboxInputForm.vue'
