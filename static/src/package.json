@@ -5,7 +5,8 @@
   "main": "editor.js",
   "scripts": {
     "watch": "webpack -w -d",
-    "test": "jest"
+    "test": "jest",
+    "coveralls": "jest --coverage"
   },
   "author": "",
   "license": "ISC",
@@ -28,8 +29,8 @@
     "babel-register": "^6.0.0",
     "babel-runtime": "^6.26.0",
     "chai": "^3.5.0",
-    "chromedriver": "^2.21.2",
     "connect-history-api-fallback": "^1.1.0",
+    "coveralls": "^3.0.2",
     "cropperjs": "^1.0.0-rc.2",
     "cross-spawn": "^2.1.5",
     "css-loader": "^0.23.0",
@@ -89,6 +90,7 @@
     "xregexp": "^3.1.1"
   },
   "jest": {
+    "collectCoverage": true,
     "moduleFileExtensions": [
       "js",
       "vue",
