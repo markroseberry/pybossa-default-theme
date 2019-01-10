@@ -24,7 +24,7 @@ import 'prismjs'
 import 'prismjs/themes/prism.css'
 import Prism from 'vue-prism-component'
 import ComponentRender from './ComponentRender'
-import components from '@dtwebservices/pybossa.vue'
+import components from 'test-component.vue'
 import * as types from '../store/types'
 export default {
 

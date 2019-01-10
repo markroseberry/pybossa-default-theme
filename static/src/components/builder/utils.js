@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 /* eslint-disable import/no-webpack-loader-syntax */
-import Mustache from 'Mustache'
+import Mustache from 'mustache'
 import textInputTemplate from './components/TextInput/TextInputTemplate.html'
 import checkboxInputTemplate from './components/CheckboxInput/CheckboxInputTemplate.html'
 import labelTemplate from './components/templates/LabelTemplate.html'

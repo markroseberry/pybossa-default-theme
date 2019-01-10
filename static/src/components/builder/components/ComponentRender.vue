@@ -1,6 +1,6 @@
 <script>
 /* eslint-disable vue/require-default-prop */
-import components from '@dtwebservices/pybossa.vue'
+import components from 'test-component.vue'
 
 export default {
     components,
