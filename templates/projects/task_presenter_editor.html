@@ -305,7 +305,7 @@ var main = function() {
     containerContent.classList.toggle("col-md-12");
     vue.style.visibility = "visible";
     componentBuilderDescription.style.visibility = "hidden";
-    componentBuilderHideLink.style.visibility = "visible";
+    if (componentBuilderHideLink) componentBuilderHideLink.style.visibility = "visible" ;
     slide.toggle('slow');            
  });
 }
