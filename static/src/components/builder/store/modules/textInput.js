@@ -15,13 +15,13 @@ const initialState = () => {
     }
 }
 
-const state = {
+export const state = {
     textInput: {
         form: initialState()
     }
 }
 
-const getters = {
+export const getters = {
     [types.GET_TEXT_INPUT_FORM]: (state) => {
         return state.textInput.form
     },
@@ -30,13 +30,13 @@ const getters = {
     }
 }
 
-const mutations = {
+export const mutations = {
     [types.MUTATE_TEXT_INPUT_FORM]: (state, payload) => {
         state.textInput.form = payload
     }
 }
 
-const actions = {
+export const actions = {
     [types.UPDATE_TEXT_INPUT_FORM]: ({ commit }, payload) => {
         commit(types.MUTATE_TEXT_INPUT_FORM, payload)
     },

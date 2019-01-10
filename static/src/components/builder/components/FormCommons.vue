@@ -22,7 +22,7 @@
           <div class="form-row">
             <div class="form-group col-md-12">
               <label
-                :for = "pyb-answer"
+                for = "pyb-answer"
                 class= "col-form-label-sm" >Answer field name</label>
               <input
                 id="pyb-answer"

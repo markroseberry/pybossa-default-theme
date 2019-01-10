@@ -5,15 +5,17 @@
   "main": "editor.js",
   "scripts": {
     "watch": "webpack -w -d",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "author": "",
   "license": "ISC",
+  "dependencies": {},
   "devDependencies": {
     "axios": "^0.16.2",
     "babel-core": "^6.0.0",
     "babel-eslint": "^8.2.1",
     "babel-helper-vue-jsx-merge-props": "^2.0.0",
+    "babel-jest": "^23.6.0",
     "babel-loader": "^7.0.1",
     "babel-plugin-syntax-jsx": "^6.18.0",
     "babel-plugin-transform-runtime": "^6.23.0",
@@ -21,6 +23,7 @@
     "babel-plugin-transform-vue-template": "^0.4.2",
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-2": "^6.24.1",
     "babel-register": "^6.0.0",
     "babel-runtime": "^6.26.0",
     "chai": "^3.5.0",
@@ -47,6 +50,7 @@
     "http-proxy-middleware": "^0.12.0",
     "inject-loader": "^2.0.1",
     "isparta-loader": "^2.0.0",
+    "jest": "^23.6.0",
     "json-loader": "^0.5.4",
     "lolex": "^1.4.0",
     "mini-css-extract-plugin": "^0.5.0",
@@ -83,5 +87,15 @@
     "webpack-merge": "~3.0.0",
     "xregexp": "^3.1.1"
   },
-  "dependencies": {}
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "vue",
+      "html"
+    ],
+    "transform": {
+      "^.+\\.(js|vue)$": "babel-jest",
+      "^.+\\.html$": "<rootDir>/test/utils/htmlLoader.js"
+    }
+  }
 }

@@ -1,13 +1,13 @@
 /* eslint-disable max-len */
 /* eslint-disable import/no-webpack-loader-syntax */
 import Mustache from 'Mustache'
-const textInputTemplate = require('!!html-loader!./components/TextInput/TextInputTemplate.html')
-const checkboxInputTemplate = require('!!html-loader!./components/CheckboxInput/CheckboxInputTemplate.html')
+import textInputTemplate from './components/TextInput/TextInputTemplate.html'
+import checkboxInputTemplate from './components/CheckboxInput/CheckboxInputTemplate.html'
+import labelTemplate from './components/templates/LabelTemplate.html'
 const templates = {
     TEXT_INPUT: textInputTemplate,
     CHECKBOX_INPUT: checkboxInputTemplate,
 }
-const labelTemplate = require('!!html-loader!./components/templates/LabelTemplate.html')
 export default {
     uniqueID: () => {
         return '_' + Math.random().toString(36).substr(2, 9)
