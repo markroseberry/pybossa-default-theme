@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {},
   "devDependencies": {
+    "@dtwebservices/pybossa.vue": "^1.0.2",
     "axios": "^0.16.2",
     "babel-core": "^6.0.0",
     "babel-eslint": "^8.2.1",
