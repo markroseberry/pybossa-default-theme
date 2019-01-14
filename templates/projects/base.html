@@ -24,13 +24,15 @@
     <!-- Project -->
     <div id="container-content" class="col-sm-9 col-md-9" style="min-height:400px;margin-top:50px;">
         <div class="row">
-            <div class="col-sm-8 col-md-8">
+            <div class="col-sm-12 col-md-12">
                 <h1>{{project.name}}</h1>
                 {% if section %}
                 <h2>{{section}}</h2>
                 {% endif %}
             </div>
-            <div class="col-sm-4 col-md-4">
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
                 {{helper.render_contribute_button(project, current_user, csrf_token())}}
             </div>
         </div>
