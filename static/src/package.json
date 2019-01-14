@@ -12,7 +12,7 @@
   "license": "ISC",
   "dependencies": {},
   "devDependencies": {
-    "test-component.vue": "^1.0.2",
+    "@vue/test-utils": "^1.0.0-beta.28",
     "axios": "^0.16.2",
     "babel-core": "^6.0.0",
     "babel-eslint": "^8.2.1",
@@ -67,6 +67,7 @@
     "sinon": "^1.17.3",
     "sinon-chai": "^2.8.0",
     "style-loader": "^0.18.2",
+    "test-component.vue": "^1.0.2",
     "url-loader": "^0.5.7",
     "vue": "^2.5.2",
     "vue-clipboard2": "^0.2.1",
@@ -74,6 +75,7 @@
     "vue-cropperjs": "^2.1.1",
     "vue-hot-reload-api": "^2.0.6",
     "vue-html-loader": "^1.2.4",
+    "vue-jest": "^3.0.2",
     "vue-loader": "15.3.0",
     "vue-perfect-scrollbar": "^0.1.0",
     "vue-picture-input": "^1.12.1",
@@ -97,7 +99,8 @@
       "html"
     ],
     "transform": {
-      "^.+\\.(js|vue)$": "babel-jest",
+      ".*\\.(vue)$": "vue-jest",
+      "^.+\\.(js)$": "babel-jest",
       "^.+\\.html$": "<rootDir>/test/utils/htmlLoader.js"
     }
   }
