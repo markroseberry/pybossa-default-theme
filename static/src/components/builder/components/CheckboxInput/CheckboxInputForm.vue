@@ -23,12 +23,6 @@
       v-model= "form['initial-value'].value"
       class="form-control form-control-sm"
       type="text">
-
-    <input
-      id="initial-value-isVariable"
-      v-model="isVariable"
-      type="checkbox">
-    <label for="initial-value-isVariable"> Is Variable Name?</label>
   </div>
 </template>
 
@@ -40,19 +34,13 @@ export default {
     components: {FormCommons},
     data () {
         return {
-            booleanValues: [false, true],
-            isVariable: false
+            booleanValues: [false, true]
         }
     },
     computed: {
         form: {
             get () {
-                const form = this.$store.getters[types.GET_CHECKBOX_INPUT_FORM]
-                if (!form['initial-value'].isVariable) {
-                    form['initial-value'].value = this.booleanValues.find(
-                        (e) => e === form['initial-value'].value)
-                }
-                return form
+                return this.$store.getters[types.GET_CHECKBOX_INPUT_FORM]
             },
             set (value) {
                 this.$store.dispatch(types.UPDATE_CHECKBOX_INPUT_FORM, value)
@@ -63,16 +51,6 @@ export default {
                 return this.$store.getters[types.GET_CHECKBOX_INPUT_SNIPPET]
             }
         }
-    },
-    watch: {
-        isVariable: function (value) {
-            this.form['initial-value'].isVariable = value
-            if (value) {
-                this.form['initial-value'].value = ''
-            } else {
-                this.form['initial-value'].value = this.booleanValues[0]
-            }
-        },
     }
 }
 </script>

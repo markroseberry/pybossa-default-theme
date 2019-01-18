@@ -8,18 +8,18 @@ function resolve (dir) {
 }
 
 module.exports = {
-  // entry point of our application
-  mode: 'production',
-  entry: {
-    editor: './editor.js',
-    task_browse: './task_browse.js'
-  },
-  // where to place the compiled bundle
-  output: {
-    path: resolve('../js/gen'),
-    publicPath: '/static/js/gen',
-    filename: 'editor.min.[hash].js'
-  },
+    // entry point of our application
+    mode: 'production',
+    entry: {
+        editor: './editor.js',
+        task_browse: './task_browse.js'
+    },
+    // where to place the compiled bundle
+    output: {
+        path: resolve('../js/gen'),
+        publicPath: '/static/js/gen',
+        filename: '[name].min.[hash].js'
+    },
 
     resolve: {
         extensions: ['.js', '.vue', '.json'],

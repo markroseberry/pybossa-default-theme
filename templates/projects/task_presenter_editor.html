@@ -40,7 +40,7 @@
     </div>
     <div class="col-md-10">
         <p id="component-builder-description">
-            Click <a id = "showVueComponent" class = "showVueComponent cursor-link" >Graphical Component Builder</a>
+            Click <a id = "show-builder" class = "cursor-link" >Graphical Component Builder</a>
             to build your job with our interactive GUI.
 
         </p>
@@ -72,7 +72,7 @@
                 </div>
                 
                     <p id = "component-builder-hide">
-                        <a class="pull-right text-right hide-text cursor-link" id = "hideVueComponent">Hide Graphical Component Builder</a>
+                        <a class="pull-right text-right hide-text cursor-link" id = "hide-builder">Hide Graphical Component Builder</a>
                     </p>
                     {% include "projects/componentBuilder.html" %}
             
@@ -258,8 +258,8 @@ $(".btn-preview").off('click').on('click', function(){
 })();
 var main = function() {
  var slide = $('.navigation-element');
- var showVueComponent = $('#showVueComponent');
- var hideVueComponent = $('#hideVueComponent');
+ var showVueComponent = $('#show-builder');
+ var hideVueComponent = $('#hide-builder');
  var componentBuilderHideLink = document.getElementById("component-builder-hide");
  var componentBuilderDescription = document.getElementById("component-builder-description");
  var mainContainer =document.getElementById("main-container");

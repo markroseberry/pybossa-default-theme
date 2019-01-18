@@ -8,7 +8,7 @@
     <router-link
       :to="toView"
       tag="li"
-      active-class="active"><a>View</a></router-link>
+      active-class="active"><a>Preview</a></router-link>
     <li
       v-if="$route.name.includes('FORM')"
       class="pull-right">
@@ -107,4 +107,3 @@ export default {
     }
 }
 </script>
-
