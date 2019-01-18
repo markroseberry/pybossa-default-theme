@@ -3,7 +3,6 @@
 <div id="editorpybossa" class = "col-md-6">
     <builder></builder>
 </div>    
-<% for(var i=0; i<htmlWebpackPlugin.files.js.length; i++) {%>
-   <script src="<%= htmlWebpackPlugin.files.js[i] %>"></script>
-<% } %>
+<script src="<%= htmlWebpackPlugin.files.chunks.editor.entry %>"></script>
+
 {% endblock %}

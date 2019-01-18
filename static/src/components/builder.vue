@@ -51,10 +51,9 @@
 </style>
 
 <script>
-
 import { routes } from './builder/router'
 import store from './builder/store'
-import Vue from 'Vue'
+import Vue from 'vue'
 import VueClipboard from 'vue-clipboard2'
 import VueRouter from 'vue-router'
 Vue.use(VueClipboard)

@@ -1,4 +1,4 @@
-import Vue from 'Vue'
+import Vue from 'vue'
 import Vuex from 'vuex'
 import textInput from './modules/textInput'
 import checkboxInput from './modules/checkboxInput'

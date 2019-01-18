@@ -21,31 +21,10 @@ module.exports = {
     filename: 'editor.min.[hash].js'
   },
 
-  resolve: {
-    extensions: ['.js', '.vue', '.json'],
-    alias: {
-      'vue$': 'vue/dist/vue.esm.js'
-    }
-  },
-
-  module: {
-    rules: [
-        {
-          test: /\.vue$/,
-          loader: 'vue-loader'
-        },
-        {
-          test: /\.js$/,
-          loader: 'babel-loader',
-          include: [resolve('src'), resolve('node_modules/webpack-dev-server/client')]
-        },
-        {
-          test: /\.css$/,
-          loader: 'style-loader!css-loader'
-        },
-        {
-          test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)$/,
-          loader: 'file-loader?outputPath=../img/search/&publicPath=../img/search/'
+    resolve: {
+        extensions: ['.js', '.vue', '.json'],
+        alias: {
+            'vue$': 'vue/dist/vue.esm.js'
         }
     },
     module: {
@@ -53,6 +32,7 @@ module.exports = {
             {
                 test: /\.html/,
                 loader: 'html-loader'
+
             },
             {
                 test: /\.vue$/,
@@ -90,25 +70,25 @@ module.exports = {
             inject: false,
             hash: false,
             filename: '../../../templates/projects/new_blogpost.html',
-            template: '../../templates/projects/new_blogpost.webpack'
+            template: '../../templates/projects/new_blogpost.webpack.ejs'
         }),
         new HtmlWebpackPlugin({
             inject: false,
             hash: false,
             filename: '../../../templates/admin/new_announcement.html',
-            template: '../../templates/admin/new_announcement.webpack'
+            template: '../../templates/admin/new_announcement.webpack.ejs'
         }),
         new HtmlWebpackPlugin({
-          inject: false,
-          hash: true,
-          filename: '../../../templates/projects/tasks_browse.html',
-          template: '../../templates/projects/tasks_browse.webpack.html'
+            inject: false,
+            hash: false,
+            filename: '../../../templates/projects/tasks_browse.html',
+            template: '../../templates/projects/tasks_browse.webpack.ejs'
         }),
         new HtmlWebpackPlugin({
-          inject: false,
-          hash: false,
-          filename: '../../../templates/projects/componentBuilder.html',
-          template: '../../templates/projects/componentBuilder.webpack'
+            inject: false,
+            hash: false,
+            filename: '../../../templates/projects/componentBuilder.html',
+            template: '../../templates/projects/componentBuilder.webpack.ejs'
         }),
         new VueLoaderPlugin()
     ]
