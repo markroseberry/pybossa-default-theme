@@ -94,11 +94,19 @@ export const actions = {
         commit(types.MUTATE_TABLE_FORM, initialState())
     },
     [types.UPDATE_TABLE_COLUMNS_FORM]: ({ commit, state }, payload) => {
+        let inputColumns = false
         payload.columns.forEach(function (col) {
             if (col.component !== 'plain-text') {
                 col.isColumnId = false
+                inputColumns = true
             }
         })
+        if (!inputColumns) {
+            payload.columns.forEach(function (col) {
+                col.isColumnId = false
+            })
+        }
+
         commit(types.MUTATE_TABLE_FORM, state.table.form)
     }
 }

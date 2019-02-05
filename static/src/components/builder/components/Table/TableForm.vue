@@ -17,7 +17,7 @@
         <label
           v-if="columnWithComponent"
           class= "col-form-label-md"
-        >* Select an unique id column </label>
+        >* Select a unique id column </label>
         <select
           v-if="columnWithComponent"
           v-model="columnId"
@@ -25,7 +25,7 @@
                    'danger-validation': (columnId === 'default' ) }">
           <option
             :value="null"
-            disabled>Select Column Id from all plain-text columns availables</option>
+            disabled>Select Column Id</option>
           <option
             v-for="e in columns"
             :key = "e"
