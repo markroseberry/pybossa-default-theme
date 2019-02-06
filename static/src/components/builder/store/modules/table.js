@@ -29,9 +29,7 @@ export const initialState = () => {
             headings: { },
             sortable: [],
             filterable: []
-        }, false),
-        'isValidForm': true
-
+        }, false)
     }
 }
 
@@ -46,7 +44,7 @@ export const getters = {
         return state.table.form
     },
     [types.GET_TABLE_SNIPPET]: (state) => {
-        return utils.getComponentCode(state.table.form, 'TABLE')
+        return utils.getComponentTableProps(state.table.form)
     },
     [types.GET_TABLE_FORM_VALID]: (state) => {
         const table = state.table.form
@@ -87,7 +85,7 @@ export const mutations = {
 }
 
 export const actions = {
-    [types.UPDATE_TABLE_FORM]: ({ commit, state }, payload) => {
+    [types.UPDATE_TABLE_FORM]: ({ commit }, payload) => {
         commit(types.MUTATE_TABLE_FORM, payload)
     },
     [types.CLEAR_TABLE_FORM]: ({ commit }) => {
@@ -110,6 +108,7 @@ export const actions = {
         commit(types.MUTATE_TABLE_FORM, state.table.form)
     }
 }
+
 
 export default {
     state,
