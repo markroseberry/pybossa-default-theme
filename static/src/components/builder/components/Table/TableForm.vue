@@ -2,13 +2,15 @@
   <div class="row">
     <div class="col-md-12">
       <div class="row">
-        <div class="form-group">
+        <div
+          v-if="columnWithComponent"
+          class="form-group">
           <label for="add-label">* Table Answer field Name</label>
           <input
             id="table-name"
             v-model= "form.name.value"
             :class="{'form-control form-control-sm': true,
-                     'danger-validation': (form.name.value === '' && form.name.dirty) }"
+                     'danger-validation': ((form.name.value === '' && columnWithComponent) || (form.name.value === '' && form.name.dirty)) }"
             type="text"
             @click="form.name.dirty =true"
             @blur="form.name.dirty =true">

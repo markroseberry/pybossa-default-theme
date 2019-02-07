@@ -48,31 +48,37 @@ export const getters = {
     },
     [types.GET_TABLE_FORM_VALID]: (state) => {
         const table = state.table.form
-        if (((table.name.value === '' && table.name.dirty) ||
-            table.columns.filter((c) => ((c.name === '' && c.dirty))).length > 0)) {
-            table.isValidForm = false
-        } else if (((table.name.value !== '') &&
-        table.columns.filter((c) => (c.name === '')).length > 0)) {
-            table.isValidForm = false
+
+        const answerFieldColumnIdRequired = (table.columns.filter(
+            (col) => col.component !== 'plain-text').length > 0)
+
+        const anyColumnNameEmpty = table.columns.filter((c) => (c.name === '')).length > 0
+
+        const anyDirtyEmptyColumn = table.columns.filter((c) =>
+            ((c.name === '' && c.dirty))).length > 0
+
+        const isAnswerFieldDirty = table.name.value === '' && table.name.dirty
+
+        const anyDirtyColumn = table.columns.filter((c) => (c.dirty)).length > 0
+
+        const columnIdExist = table.columns.filter((col) => col.isColumnId).length === 1
+
+        const isFormUntouched = !table.name.dirty && !anyDirtyColumn
+
+        if ((isAnswerFieldDirty && answerFieldColumnIdRequired) || anyDirtyEmptyColumn) {
+            return false
         } else if (
-            table.data.list.length > 0 &&
-                table.columns.filter((c) => (c.name === '')).length > 0) {
-            table.isValidForm = false
-        } else if (table.columns.filter(
-            (col) => col.component !== 'plain-text').length > 0) {
-            table.isValidForm = table.columns.filter((col) => col.isColumnId).length === 1
-        } else if (table.name.value === '') {
-            table.isValidForm = false
+            table.data.list.length > 0 && anyColumnNameEmpty) {
+            return false
+        } else if (answerFieldColumnIdRequired && !columnIdExist) {
+            return false
+        } else if (isFormUntouched) {
+            return false
         } else {
-            table.isValidForm = true
+            return true
         }
-        if (!table.isValidForm) {
-            table.name.dirty = table.name.value === ''
-            table.columns.forEach((c) => { c.dirty = (c.name === '') })
-            table.data.dirty = table.data.value === '' && table.data.isVariable
-        }
-        return table.isValidForm
     }
+
 }
 
 export const mutations = {
@@ -100,6 +106,7 @@ export const actions = {
             }
         })
         if (!inputColumns) {
+            payload.name.value = ''
             payload.columns.forEach(function (col) {
                 col.isColumnId = false
             })
